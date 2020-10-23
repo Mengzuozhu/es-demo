@@ -1,2 +1,2 @@
-# es-demo
-ES demo
+# ES demo
+ES Java demo
