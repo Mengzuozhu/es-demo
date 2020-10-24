@@ -1,2 +1,2 @@
 # ES demo
-ES Java demo
+Elasticsearch Java demo
