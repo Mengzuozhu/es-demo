@@ -1,6 +1,5 @@
 package com.mzz.esdemo.handler;
 
-import com.mzz.esdemo.parser.EsResponseParser;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -9,6 +8,8 @@ import org.elasticsearch.search.SearchHit;
 
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import static com.mzz.esdemo.parser.EsResponseParser.forEachHits;
 
 /**
  * ES from size分页查询
@@ -28,8 +29,7 @@ public class EsFromPageHandler {
      */
     public static void searchForHit(RestHighLevelClient client, SearchRequest searchRequest, int pageSize,
                                     Consumer<SearchHit> consumer) throws IOException {
-        searchForResponse(client, searchRequest, pageSize,
-                searchResponse -> EsResponseParser.forEachHits(searchResponse, consumer));
+        searchForResponse(client, searchRequest, pageSize, searchResponse -> forEachHits(searchResponse, consumer));
     }
 
     /**

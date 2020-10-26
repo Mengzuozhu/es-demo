@@ -1,8 +1,5 @@
 package com.mzz.esdemo.handler;
 
-import com.mzz.esdemo.parser.EsResponseParser;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.search.*;
@@ -14,21 +11,30 @@ import org.elasticsearch.search.SearchHit;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+import static com.mzz.esdemo.parser.EsResponseParser.forEachHits;
+
 /**
  * ES Scroll查询
  *
  * @author zuozhu.meng
  **/
-@RequiredArgsConstructor
 public class EsScrollHandler {
-    private static final int DEFAULT_SCROLL_TIME_MILLIS = 60000;
+    private static final int DEFAULT_KEEP_ALIVE_MILLIS = 60000;
     private final RestHighLevelClient highLevelClient;
-    @Setter
     private boolean isClearScroll = true;
+
+    public EsScrollHandler(RestHighLevelClient client) {
+        this.highLevelClient = client;
+    }
 
     public EsScrollHandler(RestHighLevelClient client, boolean isClearScroll) {
         this.isClearScroll = isClearScroll;
         this.highLevelClient = client;
+    }
+
+    public EsScrollHandler setClearScroll(boolean clearScroll) {
+        isClearScroll = clearScroll;
+        return this;
     }
 
     /**
@@ -38,7 +44,7 @@ public class EsScrollHandler {
      * @param consumer      the consumer
      */
     public void searchForHit(SearchRequest searchRequest, Consumer<SearchHit> consumer) throws IOException {
-        searchForResponse(searchRequest, searchResponse -> EsResponseParser.forEachHits(searchResponse, consumer));
+        searchForResponse(searchRequest, searchResponse -> forEachHits(searchResponse, consumer));
     }
 
     /**
@@ -48,7 +54,7 @@ public class EsScrollHandler {
      * @param consumer      the consumer
      */
     public void searchForResponse(SearchRequest searchRequest, Consumer<SearchResponse> consumer) throws IOException {
-        searchForResponse(searchRequest, new TimeValue(DEFAULT_SCROLL_TIME_MILLIS), consumer);
+        searchForResponse(searchRequest, new TimeValue(DEFAULT_KEEP_ALIVE_MILLIS), consumer);
     }
 
     /**

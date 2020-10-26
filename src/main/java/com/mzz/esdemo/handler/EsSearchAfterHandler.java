@@ -1,6 +1,5 @@
 package com.mzz.esdemo.handler;
 
-import com.mzz.esdemo.parser.EsResponseParser;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -11,6 +10,8 @@ import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import static com.mzz.esdemo.parser.EsResponseParser.*;
 
 /**
  * ES Search After查询
@@ -28,8 +29,7 @@ public class EsSearchAfterHandler {
      */
     public static void searchForHit(RestHighLevelClient client, SearchRequest searchRequest,
                                     Consumer<SearchHit> consumer) throws IOException {
-        searchForResponse(client, searchRequest,
-                searchResponse -> EsResponseParser.forEachHits(searchResponse, consumer));
+        searchForResponse(client, searchRequest, searchResponse -> forEachHits(searchResponse, consumer));
     }
 
     /**
