@@ -91,7 +91,7 @@ public class AggregationService {
     }
 
     /**
-     * Terms count agg map.
+     * Terms count agg.
      *
      * @param index the index
      * @param field the field

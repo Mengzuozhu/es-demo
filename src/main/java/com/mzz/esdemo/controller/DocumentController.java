@@ -19,13 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DocumentController {
 
-    /**
-     * The Document service.
-     */
     private final DocumentService documentService;
 
     /**
-     * Upsert response.
+     * Upsert.
      *
      * @param index  the index
      * @param id     the id
@@ -38,7 +35,7 @@ public class DocumentController {
     }
 
     /**
-     * Upsert response.
+     * Upsert.
      *
      * @param index   the index
      * @param sources the sources
@@ -62,7 +59,7 @@ public class DocumentController {
     }
 
     /**
-     * Delete response.
+     * Delete.
      *
      * @param index the index
      * @param id    the id
@@ -74,7 +71,7 @@ public class DocumentController {
     }
 
     /**
-     * Delete response.
+     * Delete.
      *
      * @param index  the index
      * @param source the source
@@ -86,7 +83,7 @@ public class DocumentController {
     }
 
     /**
-     * Clear index response.
+     * Clear index.
      *
      * @param index the index
      * @return the response
@@ -97,10 +94,10 @@ public class DocumentController {
     }
 
     /**
-     * Reindex response.
+     * Reindex.
      *
-     * @param destIndex   the source index
-     * @param sourceIndex the target index
+     * @param sourceIndex the source index
+     * @param destIndex   the dest index
      * @return the response
      */
     @PostMapping("/{sourceIndex}/{destIndex}/reindex")

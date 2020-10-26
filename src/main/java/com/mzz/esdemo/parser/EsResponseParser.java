@@ -42,7 +42,7 @@ public class EsResponseParser {
     }
 
     /**
-     * Response hits to list list.
+     * Response hits to list.
      *
      * @param searchResponse the search response
      * @return the list

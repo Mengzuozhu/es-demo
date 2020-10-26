@@ -37,6 +37,14 @@ public class DocumentService {
 
     private final RestHighLevelClient restHighLevelClient;
 
+    /**
+     * Create doc.
+     *
+     * @param index  the index
+     * @param id     the id
+     * @param source the source
+     * @return the doc write response
+     */
     @SneakyThrows
     public DocWriteResponse createDoc(String index, String id, Object source) {
         IndexRequest indexRequest = new IndexRequest(index)
@@ -45,6 +53,14 @@ public class DocumentService {
         return restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Upsert doc.
+     *
+     * @param index  the index
+     * @param id     the id
+     * @param source the source
+     * @return the doc write response
+     */
     @SneakyThrows
     public DocWriteResponse upsertDoc(String index, String id, Object source) {
         String jsonString = JsonUtil.toJsonString(source);
@@ -54,6 +70,13 @@ public class DocumentService {
         return restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Upsert doc by bulk.
+     *
+     * @param index   the index
+     * @param sources the sources
+     * @return the bulk response
+     */
     @SneakyThrows
     public BulkResponse upsertDocByBulk(String index, List<JSONObject> sources) {
         BulkRequest bulkRequest = new BulkRequest(index);
@@ -67,12 +90,26 @@ public class DocumentService {
         return restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Gets doc.
+     *
+     * @param index the index
+     * @param id    the id
+     * @return the doc
+     */
     @SneakyThrows
     public GetResponse getDoc(String index, String id) {
         GetRequest deleteRequest = new GetRequest(index, id);
         return restHighLevelClient.get(deleteRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Delete doc.
+     *
+     * @param index the index
+     * @param id    the id
+     * @return the doc write response
+     */
     @SneakyThrows
     public DocWriteResponse deleteDoc(String index, String id) {
         DeleteRequest deleteRequest = new DeleteRequest(index)
@@ -80,6 +117,13 @@ public class DocumentService {
         return restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Delete by query.
+     *
+     * @param index     the index
+     * @param queryJson the query json
+     * @return the bulk by scroll response
+     */
     @SneakyThrows
     public BulkByScrollResponse deleteByQuery(String index, String queryJson) {
         DeleteByQueryRequest deleteRequest = new DeleteByQueryRequest(index)
@@ -87,11 +131,24 @@ public class DocumentService {
         return restHighLevelClient.deleteByQuery(deleteRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Clear index.
+     *
+     * @param index the index
+     * @return the bulk by scroll response
+     */
     @SneakyThrows
     public BulkByScrollResponse clearIndex(String index) {
         return deleteByQuery(index, QueryBuilders.matchAllQuery().toString());
     }
 
+    /**
+     * Reindex.
+     *
+     * @param sourceIndex the source index
+     * @param destIndex   the dest index
+     * @return the bulk by scroll response
+     */
     @SneakyThrows
     public BulkByScrollResponse reindex(String sourceIndex, String destIndex) {
         return restHighLevelClient.reindex(new ReindexRequest()

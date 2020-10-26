@@ -37,7 +37,7 @@ public class IndexService {
     private final IndicesClient indicesClient;
 
     /**
-     * Exists boolean.
+     * Exists.
      *
      * @param indices the indices
      * @return the boolean
@@ -59,7 +59,7 @@ public class IndexService {
     }
 
     /**
-     * Put settings acknowledged response.
+     * Put settings.
      *
      * @param index    the index
      * @param settings the settings
@@ -96,7 +96,7 @@ public class IndexService {
     }
 
     /**
-     * Put mappings acknowledged response.
+     * Put mappings.
      *
      * @param index         the index
      * @param mappingSource the mapping source
@@ -109,7 +109,7 @@ public class IndexService {
     }
 
     /**
-     * Clone mappings acknowledged response.
+     * Clone mappings.
      *
      * @param sourceIndex the source index
      * @param targetIndex the target index
@@ -122,7 +122,7 @@ public class IndexService {
     }
 
     /**
-     * Clone index without data create index response.
+     * Clone index without data.
      *
      * @param sourceIndex the source index
      * @param targetIndex the target index
@@ -150,7 +150,9 @@ public class IndexService {
     }
 
     /**
-     * Clone index resize response.
+     * Clone index.
+     * To clone an index, the index must be marked as read-only and have a cluster health status of green.
+     * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-clone-index.html">
      *
      * @param sourceIndex the source index
      * @param targetIndex the target index
@@ -162,7 +164,7 @@ public class IndexService {
     }
 
     /**
-     * Refresh refresh response.
+     * Refresh.
      *
      * @param index the index
      * @return the refresh response

@@ -31,7 +31,7 @@ public class IndexController {
     }
 
     /**
-     * Clone index without data response.
+     * Clone index without data.
      *
      * @param sourceIndex the source index
      * @param targetIndex the target index

@@ -26,13 +26,10 @@ import java.util.Collections;
 @Service
 @RequiredArgsConstructor
 public class SearchService {
-    /**
-     * The Rest high level client.
-     */
     private final RestHighLevelClient restHighLevelClient;
 
     /**
-     * Match all query search response.
+     * Match all query.
      *
      * @param index the index
      * @return the search response
@@ -44,7 +41,7 @@ public class SearchService {
     }
 
     /**
-     * Terms query search response.
+     * Terms query.
      *
      * @param index  the index
      * @param field  the field
@@ -58,7 +55,7 @@ public class SearchService {
     }
 
     /**
-     * Range query search response.
+     * Range query.
      *
      * @param index the index
      * @param field the field
@@ -75,7 +72,7 @@ public class SearchService {
     }
 
     /**
-     * Match query search response.
+     * Match query.
      *
      * @param index the index
      * @param field the field
@@ -89,7 +86,7 @@ public class SearchService {
     }
 
     /**
-     * Match phrase query search response.
+     * Match phrase query.
      *
      * @param index the index
      * @param field the field
@@ -103,7 +100,7 @@ public class SearchService {
     }
 
     /**
-     * Query string query search response.
+     * Query string query.
      *
      * @param index       the index
      * @param queryString the query string
@@ -116,11 +113,10 @@ public class SearchService {
     }
 
     /**
-     * Query by json search response.
-     * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-search.html">
+     * Query by json.
      *
      * @param index       the index
-     * @param contentJson the query json
+     * @param contentJson the content json
      * @return the search response
      */
     @SneakyThrows
@@ -133,13 +129,18 @@ public class SearchService {
         return search(index, sourceBuilder);
     }
 
+    /**
+     * Gets content registry.
+     *
+     * @return the content registry
+     */
     private NamedXContentRegistry getContentRegistry() {
         SearchModule searchModule = new SearchModule(Settings.EMPTY, false, Collections.emptyList());
         return new NamedXContentRegistry(searchModule.getNamedXContents());
     }
 
     /**
-     * Search search response.
+     * Search.
      *
      * @param index         the index
      * @param sourceBuilder the source builder

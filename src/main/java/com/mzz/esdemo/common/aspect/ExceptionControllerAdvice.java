@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * The type Exception controller advice.
+ *
  * @author zuozhu.meng
  */
 @ControllerAdvice

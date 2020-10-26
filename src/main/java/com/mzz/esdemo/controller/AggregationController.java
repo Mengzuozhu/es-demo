@@ -16,13 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class AggregationController {
-    /**
-     * The Aggregation service.
-     */
     private final AggregationService aggregationService;
 
     /**
-     * Distinct count response.
+     * Distinct count.
      *
      * @param index the index
      * @param field the field
@@ -34,7 +31,7 @@ public class AggregationController {
     }
 
     /**
-     * Min agg response.
+     * Min agg.
      *
      * @param index the index
      * @param field the field
@@ -46,7 +43,7 @@ public class AggregationController {
     }
 
     /**
-     * Max agg response.
+     * Max agg.
      *
      * @param index the index
      * @param field the field
@@ -58,7 +55,7 @@ public class AggregationController {
     }
 
     /**
-     * Avg agg response.
+     * Avg agg.
      *
      * @param index the index
      * @param field the field
@@ -70,7 +67,7 @@ public class AggregationController {
     }
 
     /**
-     * Terms count agg response.
+     * Terms count agg.
      *
      * @param index the index
      * @param field the field

@@ -17,12 +17,11 @@ import java.net.URISyntaxException;
  * The type Es client util.
  *
  * @author zuozhu.meng
- * @date 2020 /3/14
  */
 public class EsClientUtil {
 
     /**
-     * Create rest high level client
+     * Create rest high level client.
      *
      * @param esUrl the es url
      * @return the rest high level client
@@ -32,7 +31,7 @@ public class EsClientUtil {
     }
 
     /**
-     * Create rest high level client
+     * Create rest high level client.
      *
      * @param esIp   the es ip
      * @param esPort the es port
@@ -43,7 +42,7 @@ public class EsClientUtil {
     }
 
     /**
-     * Create rest high level client
+     * Create rest high level client.
      *
      * @param esUrl    the es url
      * @param userName the user name
@@ -62,7 +61,7 @@ public class EsClientUtil {
     }
 
     /**
-     * Create rest high level client with keep alive
+     * Create rest high level client with keep alive.
      *
      * @param esUrl     the es url
      * @param keepAlive the keep alive
@@ -86,7 +85,7 @@ public class EsClientUtil {
     }
 
     /**
-     * Create http host
+     * Create http host.
      *
      * @param uri the uri
      * @return the http host

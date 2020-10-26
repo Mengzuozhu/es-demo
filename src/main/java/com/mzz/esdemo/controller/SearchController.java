@@ -18,13 +18,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class SearchController {
-    /**
-     * The Search service.
-     */
     private final SearchService searchService;
 
     /**
-     * Match all query response.
+     * Match all query.
      *
      * @param index the index
      * @return the response
@@ -35,7 +32,7 @@ public class SearchController {
     }
 
     /**
-     * Terms query response.
+     * Terms query.
      *
      * @param index  the index
      * @param field  the field
@@ -49,7 +46,7 @@ public class SearchController {
     }
 
     /**
-     * Terms query response.
+     * Terms query.
      *
      * @param index the index
      * @param field the field
@@ -64,7 +61,7 @@ public class SearchController {
     }
 
     /**
-     * Match query response.
+     * Match query.
      *
      * @param index the index
      * @param field the field
@@ -77,7 +74,7 @@ public class SearchController {
     }
 
     /**
-     * Match phrase query response.
+     * Match phrase query.
      *
      * @param index the index
      * @param field the field
@@ -92,7 +89,7 @@ public class SearchController {
     }
 
     /**
-     * Query string query response.
+     * Query string query.
      *
      * @param index the index
      * @param text  the text
@@ -104,7 +101,7 @@ public class SearchController {
     }
 
     /**
-     * Query by json response.
+     * Query by json.
      *
      * @param index   the index
      * @param content the content
