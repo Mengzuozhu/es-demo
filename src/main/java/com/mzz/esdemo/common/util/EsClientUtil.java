@@ -7,6 +7,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 
 import java.net.URI;
@@ -21,17 +22,17 @@ import java.net.URISyntaxException;
 public class EsClientUtil {
 
     /**
-     * Create rest high level client rest high level client.
+     * Create rest high level client
      *
      * @param esUrl the es url
      * @return the rest high level client
      */
     public static RestHighLevelClient createRestHighLevelClient(String esUrl) {
-        return new RestHighLevelClient(RestClient.builder(createHttpHost(URI.create(esUrl))));
+        return new RestHighLevelClient(getRestClientBuilder(esUrl));
     }
 
     /**
-     * Create rest high level client rest high level client.
+     * Create rest high level client
      *
      * @param esIp   the es ip
      * @param esPort the es port
@@ -42,7 +43,7 @@ public class EsClientUtil {
     }
 
     /**
-     * Create rest high level client rest high level client.
+     * Create rest high level client
      *
      * @param esUrl    the es url
      * @param userName the user name
@@ -52,16 +53,40 @@ public class EsClientUtil {
     public static RestHighLevelClient createRestHighLevelClient(String esUrl, String userName, String password) {
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(userName, password));
-        HttpHost httpHost = createHttpHost(URI.create(esUrl));
-        return new RestHighLevelClient(RestClient.builder(httpHost)
+        RestClientBuilder restClientBuilder = getRestClientBuilder(esUrl)
                 .setHttpClientConfigCallback(httpClientBuilder -> {
                     httpClientBuilder.disableAuthCaching();
                     return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
-                }));
+                });
+        return new RestHighLevelClient(restClientBuilder);
     }
 
     /**
-     * Create http host http host.
+     * Create rest high level client with keep alive
+     *
+     * @param esUrl     the es url
+     * @param keepAlive the keep alive
+     * @return the rest high level client
+     */
+    public static RestHighLevelClient createRestHighLevelClientWithKeepAlive(String esUrl, Long keepAlive) {
+        RestClientBuilder clientBuilder = getRestClientBuilder(esUrl)
+                .setHttpClientConfigCallback(requestConfig ->
+                        requestConfig.setKeepAliveStrategy((response, context) -> keepAlive));
+        return new RestHighLevelClient(clientBuilder);
+    }
+
+    /**
+     * Gets rest client builder.
+     *
+     * @param esUrl the es url
+     * @return the rest client builder
+     */
+    public static RestClientBuilder getRestClientBuilder(String esUrl) {
+        return RestClient.builder(createHttpHost(URI.create(esUrl)));
+    }
+
+    /**
+     * Create http host
      *
      * @param uri the uri
      * @return the http host
