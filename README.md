@@ -1,6 +1,6 @@
 # Elasticsearch demo
 
-Spring boot + Elasticsearch Java demo：
+Spring boot2.3.4 + Elasticsearch7.x Java demo：
 
 - elasticsearch版本7.9.2，使用Java High Level REST Client交互ES
 - 索引管理常用功能示例：配置（setting）、映射(mapping)、索引结构和数据复制
