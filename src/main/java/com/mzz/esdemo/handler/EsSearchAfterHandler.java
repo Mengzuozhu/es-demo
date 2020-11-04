@@ -44,7 +44,7 @@ public class EsSearchAfterHandler {
             return;
         }
         SearchSourceBuilder sourceBuilder = searchRequest.source();
-        //requestBuilder.setSize(100); //在构建查询条件时，即可设置大小
+        // sourceBuilder.size(100); //在构建查询条件时，即可设置大小
         //设置排序字段
         sourceBuilder.sort(UID, SortOrder.ASC);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
