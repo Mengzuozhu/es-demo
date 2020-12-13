@@ -27,7 +27,7 @@ public class SearchController {
      * @return the response
      */
     @GetMapping("/{index}/matchAllQuery")
-    public Response matchAllQuery(@PathVariable String index) {
+    public Response<?> matchAllQuery(@PathVariable String index) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.matchAllQuery(index)));
     }
 
@@ -40,7 +40,7 @@ public class SearchController {
      * @return the response
      */
     @PostMapping("/{index}/{field}/termsQuery")
-    public Response termsQuery(@PathVariable String index, @PathVariable String field,
+    public Response<?> termsQuery(@PathVariable String index, @PathVariable String field,
                                @RequestBody List<Object> values) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.termsQuery(index, field, values)));
     }
@@ -55,7 +55,7 @@ public class SearchController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/rangeQuery")
-    public Response termsQuery(@PathVariable String index, @PathVariable String field,
+    public Response<?> rangeQuery(@PathVariable String index, @PathVariable String field,
                                @RequestParam Object gte, @RequestParam Object lte) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.rangeQuery(index, field, gte, lte)));
     }
@@ -69,7 +69,7 @@ public class SearchController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/matchQuery")
-    public Response matchQuery(@PathVariable String index, @PathVariable String field, @RequestParam Object text) {
+    public Response<?> matchQuery(@PathVariable String index, @PathVariable String field, @RequestParam Object text) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.matchQuery(index, field, text)));
     }
 
@@ -82,7 +82,7 @@ public class SearchController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/matchPhraseQuery")
-    public Response matchPhraseQuery(@PathVariable String index, @PathVariable String field,
+    public Response<?> matchPhraseQuery(@PathVariable String index, @PathVariable String field,
                                      @RequestParam Object text) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.matchPhraseQuery(index, field,
                 text)));
@@ -96,7 +96,7 @@ public class SearchController {
      * @return the response
      */
     @GetMapping("/{index}/queryStringQuery")
-    public Response queryStringQuery(@PathVariable String index, @RequestParam String text) {
+    public Response<?> queryStringQuery(@PathVariable String index, @RequestParam String text) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.queryStringQuery(index, text)));
     }
 
@@ -108,7 +108,7 @@ public class SearchController {
      * @return the response
      */
     @PostMapping("/{index}/queryByJson")
-    public Response queryByJson(@PathVariable String index, @RequestBody JSONObject content) {
+    public Response<?> queryByJson(@PathVariable String index, @RequestBody JSONObject content) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.queryByJson(index,
                 content.toJSONString())));
     }

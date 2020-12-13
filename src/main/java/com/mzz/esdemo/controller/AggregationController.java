@@ -26,7 +26,7 @@ public class AggregationController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/distinctCount")
-    public Response distinctCount(@PathVariable String index, @PathVariable String field) {
+    public Response<?> distinctCount(@PathVariable String index, @PathVariable String field) {
         return Response.of(aggregationService.distinctCount(index, field));
     }
 
@@ -38,7 +38,7 @@ public class AggregationController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/min")
-    public Response minAgg(@PathVariable String index, @PathVariable String field) {
+    public Response<?> minAgg(@PathVariable String index, @PathVariable String field) {
         return Response.of(aggregationService.minAgg(index, field));
     }
 
@@ -50,7 +50,7 @@ public class AggregationController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/max")
-    public Response maxAgg(@PathVariable String index, @PathVariable String field) {
+    public Response<?> maxAgg(@PathVariable String index, @PathVariable String field) {
         return Response.of(aggregationService.maxAgg(index, field));
     }
 
@@ -62,7 +62,7 @@ public class AggregationController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/avg")
-    public Response avgAgg(@PathVariable String index, @PathVariable String field) {
+    public Response<?> avgAgg(@PathVariable String index, @PathVariable String field) {
         return Response.of(aggregationService.avgAgg(index, field));
     }
 
@@ -74,7 +74,7 @@ public class AggregationController {
      * @return the response
      */
     @GetMapping("/{index}/{field}/termsCount")
-    public Response termsCountAgg(@PathVariable String index, @PathVariable String field) {
+    public Response<?> termsCountAgg(@PathVariable String index, @PathVariable String field) {
         return Response.of(aggregationService.termsCountAgg(index, field));
     }
 }

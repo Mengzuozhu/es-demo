@@ -18,7 +18,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler({Exception.class})
     @ResponseBody
-    public Response exceptionHandler(HttpServletRequest httpServletRequest, Exception e) {
+    public Response<?> exceptionHandler(HttpServletRequest httpServletRequest, Exception e) {
         return Response.buildFail(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
     }
 

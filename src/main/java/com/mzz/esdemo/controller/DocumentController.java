@@ -30,7 +30,7 @@ public class DocumentController {
      * @return the response
      */
     @PostMapping("/{index}/{id}/upsert")
-    public Response upsert(@PathVariable String index, @PathVariable String id, @RequestBody JSONObject source) {
+    public Response<?> upsert(@PathVariable String index, @PathVariable String id, @RequestBody JSONObject source) {
         return Response.of(documentService.upsertDoc(index, id, source));
     }
 
@@ -42,7 +42,7 @@ public class DocumentController {
      * @return the response
      */
     @PostMapping("/{index}/multiUpsert")
-    public Response upsert(@PathVariable String index, @RequestBody List<JSONObject> sources) {
+    public Response<?> upsert(@PathVariable String index, @RequestBody List<JSONObject> sources) {
         return Response.of(documentService.upsertDocByBulk(index, sources));
     }
 
@@ -54,7 +54,7 @@ public class DocumentController {
      * @return the doc
      */
     @GetMapping("/{index}/{id}")
-    public Response getDoc(@PathVariable String index, @PathVariable String id) {
+    public Response<?> getDoc(@PathVariable String index, @PathVariable String id) {
         return Response.of(documentService.getDoc(index, id).getSourceAsMap());
     }
 
@@ -66,7 +66,7 @@ public class DocumentController {
      * @return the response
      */
     @DeleteMapping("/{index}/{id}")
-    public Response delete(@PathVariable String index, @PathVariable String id) {
+    public Response<?> delete(@PathVariable String index, @PathVariable String id) {
         return Response.of(documentService.deleteDoc(index, id));
     }
 
@@ -78,7 +78,7 @@ public class DocumentController {
      * @return the response
      */
     @PostMapping("/{index}/deleteByQuery")
-    public Response delete(@PathVariable String index, @RequestBody JSONObject source) {
+    public Response<?> delete(@PathVariable String index, @RequestBody JSONObject source) {
         return Response.of(documentService.deleteByQuery(index, source.toJSONString()));
     }
 
@@ -89,7 +89,7 @@ public class DocumentController {
      * @return the response
      */
     @PostMapping("/{index}/clearIndex")
-    public Response clearIndex(@PathVariable String index) {
+    public Response<?> clearIndex(@PathVariable String index) {
         return Response.of(documentService.clearIndex(index));
     }
 
@@ -101,7 +101,7 @@ public class DocumentController {
      * @return the response
      */
     @PostMapping("/{sourceIndex}/{destIndex}/reindex")
-    public Response reindex(@PathVariable String sourceIndex, @PathVariable String destIndex) {
+    public Response<?> reindex(@PathVariable String sourceIndex, @PathVariable String destIndex) {
         return Response.of(documentService.reindex(sourceIndex, destIndex));
     }
 }

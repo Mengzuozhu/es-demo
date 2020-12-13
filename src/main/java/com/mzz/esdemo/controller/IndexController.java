@@ -26,7 +26,7 @@ public class IndexController {
      * @return the single mappings
      */
     @GetMapping("/{index}/mapping")
-    public Response getSingleMappings(@PathVariable String index) {
+    public Response<?> getSingleMappings(@PathVariable String index) {
         return Response.of(indexService.getSingleMappings(index));
     }
 
@@ -38,7 +38,7 @@ public class IndexController {
      * @return the response
      */
     @PostMapping("/{sourceIndex}/{targetIndex}/cloneIndexWithoutData")
-    public Response cloneIndexWithoutData(@PathVariable String sourceIndex, @PathVariable String targetIndex) {
+    public Response<?> cloneIndexWithoutData(@PathVariable String sourceIndex, @PathVariable String targetIndex) {
         return Response.of(indexService.cloneIndexWithoutData(sourceIndex, targetIndex));
     }
 
