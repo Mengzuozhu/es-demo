@@ -16,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticsearchConfig {
 
     @Bean
-    RestHighLevelClient restHighLevelClient(@Value("${es.url}") String esUrl) {
+    RestHighLevelClient restHighLevelClient(@Value("${es.http.url}") String esUrl) {
         return EsClientUtil.createRestHighLevelClient(esUrl);
     }
 
     @Bean
-    IndicesClient indicesClient(@Value("${es.url}") String esUrl) {
+    IndicesClient indicesClient(@Value("${es.http.url}") String esUrl) {
         return EsClientUtil.createRestHighLevelClient(esUrl).indices();
     }
 }

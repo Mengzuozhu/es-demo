@@ -3,7 +3,9 @@ package com.mzz.esdemo.service;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.elasticsearch.ElasticsearchException;
+import org.elasticsearch.action.ActionResponse;
 import org.elasticsearch.action.admin.indices.alias.Alias;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.refresh.RefreshRequest;
 import org.elasticsearch.action.admin.indices.refresh.RefreshResponse;
 import org.elasticsearch.action.admin.indices.settings.put.UpdateSettingsRequest;
@@ -161,6 +163,20 @@ public class IndexService {
     @SneakyThrows
     public ResizeResponse cloneIndex(String sourceIndex, String targetIndex) {
         return indicesClient.clone(new ResizeRequest(targetIndex, sourceIndex), RequestOptions.DEFAULT);
+    }
+
+    /**
+     * Delete index.
+     *
+     * @param index the index
+     * @return the acknowledged response
+     */
+    @SneakyThrows
+    public AcknowledgedResponse deleteIndex(String index) {
+        if (!exists(index)) {
+            return new AcknowledgedResponse(true);
+        }
+        return indicesClient.delete(new DeleteIndexRequest(index), RequestOptions.DEFAULT);
     }
 
     /**

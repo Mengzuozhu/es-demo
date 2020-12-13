@@ -30,13 +30,19 @@ class IndexServiceTest {
 
     @Test
     void cloneIndexWithoutData() {
-        CreateIndexResponse response = indexService.cloneIndexWithoutData(EsConstant.INDEX_NAME, "index_clone_without_data");
+        String index = "index_clone_without_data";
+        indexService.deleteIndex(index);
+        CreateIndexResponse response = indexService.cloneIndexWithoutData(EsConstant.INDEX_NAME, index);
         Assertions.assertTrue(response.isAcknowledged());
     }
 
     @Test
     void cloneIndex() {
-        ResizeResponse response = indexService.cloneIndex(EsConstant.INDEX_NAME, "index_clone");
+        String indexClone = "index_clone";
+        indexService.deleteIndex(indexClone);
+        indexService.putSettings(EsConstant.INDEX_NAME, SettingManager.getBlocksWriteSettings(true));
+        ResizeResponse response = indexService.cloneIndex(EsConstant.INDEX_NAME, indexClone);
+        indexService.putSettings(EsConstant.INDEX_NAME, SettingManager.getBlocksWriteSettings(false));
         Assertions.assertTrue(response.isAcknowledged());
     }
 
