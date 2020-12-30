@@ -112,8 +112,7 @@ public class DocumentService {
      */
     @SneakyThrows
     public DocWriteResponse deleteDoc(String index, String id) {
-        DeleteRequest deleteRequest = new DeleteRequest(index)
-                .id(id);
+        DeleteRequest deleteRequest = new DeleteRequest(index, id);
         return restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
     }
 
