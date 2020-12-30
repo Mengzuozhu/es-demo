@@ -40,24 +40,24 @@ public class EsSearchWrapper {
     }
 
     /**
-     * Build instance rest client wrapper.
+     * Of es search wrapper.
      *
      * @param esUrl the es url
      * @return the es search wrapper
      */
-    public static EsSearchWrapper buildInstance(String esUrl) {
-        return new EsSearchWrapper(EsClientUtil.createRestHighLevelClient(esUrl));
+    public static EsSearchWrapper of(String esUrl) {
+        return of(EsClientUtil.createRestHighLevelClient(esUrl));
     }
 
     /**
-     * Build instance rest client wrapper.
+     * Of es search wrapper.
      *
      * @param esIp   the es ip
      * @param esPort the es port
      * @return the es search wrapper
      */
-    public static EsSearchWrapper buildInstance(String esIp, Integer esPort) {
-        return new EsSearchWrapper(EsClientUtil.createRestHighLevelClient(esIp, esPort));
+    public static EsSearchWrapper of(String esIp, Integer esPort) {
+        return of(EsClientUtil.createRestHighLevelClient(esIp, esPort));
     }
 
     /**

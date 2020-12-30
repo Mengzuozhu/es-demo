@@ -20,7 +20,7 @@ import java.util.function.BiConsumer;
  * @since 2020/10/22
  **/
 class EsSearchWrapperTest {
-    private EsSearchWrapper esSearchWrapper = EsSearchWrapper.buildInstance("http://localhost:9200");
+    private EsSearchWrapper esSearchWrapper = EsSearchWrapper.of("http://localhost:9200");
 
     @Test
     void searchByPageForHit() {
