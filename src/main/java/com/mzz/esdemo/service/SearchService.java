@@ -55,6 +55,19 @@ public class SearchService {
     }
 
     /**
+     * Ids query.
+     *
+     * @param index the index
+     * @param ids   the ids
+     * @return the search response
+     */
+    public SearchResponse idsQuery(String index, String... ids) {
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder()
+                .query(QueryBuilders.idsQuery().addIds(ids));
+        return search(index, sourceBuilder);
+    }
+
+    /**
      * Range query.
      *
      * @param index the index
