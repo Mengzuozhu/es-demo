@@ -5,12 +5,12 @@ import com.mzz.esdemo.common.constant.EsConstant;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.util.set.Sets;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author zuozhu.meng
@@ -34,7 +34,7 @@ class SearchServiceTest {
     @Test
     void matchAllQuery() {
         SearchResponse response = searchService.matchAllQuery(EsConstant.INDEX_NAME);
-        Assertions.assertEquals(RestStatus.OK, response.status());
+        assertEquals(elasticsearchHandler.getUsers().size(), response.getHits().getHits().length);
     }
 
     @Test
@@ -43,7 +43,7 @@ class SearchServiceTest {
         String value = "张三";
         SearchResponse response = searchService.termsQuery(EsConstant.INDEX_NAME, field + ".keyword",
                 Sets.newHashSet(value));
-        Assertions.assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
+        assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
@@ -51,7 +51,7 @@ class SearchServiceTest {
         String field = "height";
         int value = 170;
         SearchResponse response = searchService.rangeQuery(EsConstant.INDEX_NAME, field, value, 180);
-        Assertions.assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
+        assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
@@ -59,7 +59,7 @@ class SearchServiceTest {
         String field = "name";
         String value = "张三";
         SearchResponse response = searchService.matchQuery(EsConstant.INDEX_NAME, field, value);
-        Assertions.assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
+        assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
@@ -67,7 +67,7 @@ class SearchServiceTest {
         String field = "message";
         String value = "Elasticsearch demo";
         SearchResponse response = searchService.matchPhraseQuery(EsConstant.INDEX_NAME, field, value);
-        Assertions.assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
+        assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
@@ -75,19 +75,18 @@ class SearchServiceTest {
         String field = "message";
         String value = "demo";
         SearchResponse response = searchService.queryStringQuery(EsConstant.INDEX_NAME, value);
-        Assertions.assertTrue(response.getHits().getHits()[0].getSourceAsMap().get(field).toString().contains(value));
+        assertTrue(response.getHits().getHits()[0].getSourceAsMap().get(field).toString().contains(value));
     }
 
     @Test
     void queryByJson() {
         String field = "name";
         String value = "张三";
-        // String json = QueryBuilders.matchQuery(field, value).toString();
         String json = new SearchSourceBuilder()
                 .query(QueryBuilders.matchQuery(field, value))
                 .toString();
         SearchResponse response = searchService.queryByJson(EsConstant.INDEX_NAME, json);
-        Assertions.assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
+        assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
 }

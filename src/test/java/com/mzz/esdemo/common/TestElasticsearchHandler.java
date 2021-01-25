@@ -21,11 +21,12 @@ import java.util.stream.Collectors;
  * @author zuozhu.meng
  */
 public class TestElasticsearchHandler {
-    private static final String esUrl = "http://localhost:9200";
+    private static final String ES_URL = "http://localhost:9200";
     private static DocumentService documentService;
     @Getter
     private final RestHighLevelClient client;
     private IndexService indexService;
+    private String indexName = EsConstant.INDEX_NAME;
 
     public TestElasticsearchHandler() {
         client = restHighLevelClient();
@@ -34,16 +35,16 @@ public class TestElasticsearchHandler {
     }
 
     public static RestHighLevelClient restHighLevelClient() {
-        return EsClientUtil.createRestHighLevelClient(esUrl);
+        return EsClientUtil.createRestHighLevelClient(ES_URL);
     }
 
     public static IndicesClient indicesClient() {
-        return EsClientUtil.createRestHighLevelClient(esUrl).indices();
+        return EsClientUtil.createRestHighLevelClient(ES_URL).indices();
     }
 
     public void upsertDoc() {
         clearIndex();
-        List<User> users = Lists.newArrayList(TestDataUtil.getUser(), TestDataUtil.getUser2(), TestDataUtil.getUser3());
+        List<User> users = getUsers();
         List<JSONObject> jsons = users.stream()
                 .map(JsonUtil::parseToJsonObject)
                 .collect(Collectors.toList());
@@ -51,9 +52,15 @@ public class TestElasticsearchHandler {
         refresh();
     }
 
+    public List<User> getUsers() {
+        return Lists.newArrayList(TestDataUtil.getUser(), TestDataUtil.getUser2(), TestDataUtil.getUser3());
+    }
+
     public void clearIndex() {
-        documentService.clearIndex(EsConstant.INDEX_NAME);
-        refresh();
+        if (indexService.exists(indexName)) {
+            documentService.clearIndex(indexName);
+            refresh();
+        }
     }
 
     private void refresh() {
