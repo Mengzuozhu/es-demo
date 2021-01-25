@@ -41,7 +41,7 @@ public class SearchController {
      */
     @PostMapping("/{index}/{field}/termsQuery")
     public Response<?> termsQuery(@PathVariable String index, @PathVariable String field,
-                               @RequestBody List<Object> values) {
+                                  @RequestBody List<Object> values) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.termsQuery(index, field, values)));
     }
 
@@ -56,7 +56,7 @@ public class SearchController {
      */
     @GetMapping("/{index}/{field}/rangeQuery")
     public Response<?> rangeQuery(@PathVariable String index, @PathVariable String field,
-                               @RequestParam Object gte, @RequestParam Object lte) {
+                                  @RequestParam Object gte, @RequestParam Object lte) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.rangeQuery(index, field, gte, lte)));
     }
 
@@ -83,7 +83,7 @@ public class SearchController {
      */
     @GetMapping("/{index}/{field}/matchPhraseQuery")
     public Response<?> matchPhraseQuery(@PathVariable String index, @PathVariable String field,
-                                     @RequestParam Object text) {
+                                        @RequestParam Object text) {
         return Response.of(EsResponseParser.responseHitsToList(searchService.matchPhraseQuery(index, field,
                 text)));
     }

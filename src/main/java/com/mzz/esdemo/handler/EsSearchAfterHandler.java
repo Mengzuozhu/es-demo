@@ -11,7 +11,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import static com.mzz.esdemo.parser.EsResponseParser.*;
+import static com.mzz.esdemo.parser.EsResponseParser.forEachHits;
 
 /**
  * ES Search After查询
