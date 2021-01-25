@@ -34,7 +34,7 @@ class SearchServiceTest {
     @Test
     void matchAllQuery() {
         SearchResponse response = searchService.matchAllQuery(EsConstant.INDEX_NAME);
-        assertEquals(elasticsearchHandler.getUsers().size(), response.getHits().getHits().length);
+        assertEquals(TestElasticsearchHandler.getUsers().size(), response.getHits().getHits().length);
     }
 
     @Test
