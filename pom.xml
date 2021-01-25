@@ -47,6 +47,10 @@
                     <artifactId>assertj-core</artifactId>
                     <groupId>org.assertj</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>junit-vintage-engine</artifactId>
+                    <groupId>org.junit.vintage</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
