@@ -3,7 +3,6 @@ package com.mzz.esdemo.service;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.elasticsearch.ElasticsearchException;
-import org.elasticsearch.action.ActionResponse;
 import org.elasticsearch.action.admin.indices.alias.Alias;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.refresh.RefreshRequest;
@@ -58,6 +57,17 @@ public class IndexService {
     @SneakyThrows
     public GetIndexResponse getIndex(String... indices) {
         return indicesClient.get(new GetIndexRequest(indices), RequestOptions.DEFAULT);
+    }
+
+    /**
+     * Create index.
+     *
+     * @param index the index
+     * @return the create index response
+     */
+    @SneakyThrows
+    public CreateIndexResponse createIndex(String index) {
+        return indicesClient.create(new CreateIndexRequest(index), RequestOptions.DEFAULT);
     }
 
     /**

@@ -48,7 +48,7 @@ public class TestElasticsearchHandler {
         List<JSONObject> jsons = users.stream()
                 .map(JsonUtil::parseToJsonObject)
                 .collect(Collectors.toList());
-        documentService.upsertDocByBulk(EsConstant.INDEX_NAME, jsons);
+        documentService.upsertDocByBulk(indexName, jsons);
         refresh();
     }
 
@@ -64,6 +64,6 @@ public class TestElasticsearchHandler {
     }
 
     private void refresh() {
-        indexService.refresh(EsConstant.INDEX_NAME);
+        indexService.refresh(indexName);
     }
 }
