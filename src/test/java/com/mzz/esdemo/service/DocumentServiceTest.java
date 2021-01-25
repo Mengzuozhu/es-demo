@@ -1,12 +1,12 @@
 package com.mzz.esdemo.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.mzz.esdemo.EsDemoApplication;
 import com.mzz.esdemo.common.TestDataUtil;
 import com.mzz.esdemo.common.constant.EsConstant;
 import com.mzz.esdemo.common.util.JsonUtil;
 import com.mzz.esdemo.model.User;
-import org.assertj.core.util.Lists;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.get.GetResponse;

@@ -19,6 +19,7 @@
         <elasticsearch.version>7.9.2</elasticsearch.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <fastjson.version>1.2.68</fastjson.version>
+        <guava.version>30.1-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -43,8 +44,8 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
+                    <artifactId>assertj-core</artifactId>
+                    <groupId>org.assertj</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -75,6 +76,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>${commons-collections4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
 
     </dependencies>

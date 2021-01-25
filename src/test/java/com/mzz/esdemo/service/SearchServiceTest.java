@@ -1,25 +1,35 @@
 package com.mzz.esdemo.service;
 
-import com.mzz.esdemo.EsDemoApplication;
+import com.mzz.esdemo.common.TestElasticsearchHandler;
 import com.mzz.esdemo.common.constant.EsConstant;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.util.set.Sets;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author zuozhu.meng
  * @since 2020/10/21
  **/
-@SpringBootTest(classes = EsDemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SearchServiceTest {
-    @Autowired
-    private SearchService searchService;
+    private static SearchService searchService;
+    private static TestElasticsearchHandler elasticsearchHandler = new TestElasticsearchHandler();
+
+    @AfterAll
+    static void afterAll() {
+        elasticsearchHandler.clearIndex();
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        elasticsearchHandler.upsertDoc();
+        searchService = new SearchService(elasticsearchHandler.getClient());
+    }
 
     @Test
     void matchAllQuery() {
