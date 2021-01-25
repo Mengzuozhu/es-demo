@@ -16,6 +16,9 @@ import java.util.stream.IntStream;
  * @since 2020/10/23
  **/
 public class TestDataUtil {
+
+    public static final int BIG_SIZE = 200;
+
     public static User getUser() {
         return User.builder()
                 .id("1")
@@ -50,8 +53,7 @@ public class TestDataUtil {
     }
 
     public static List<JSONObject> generateBigData() {
-        int size = 10001;
-        return IntStream.range(1, size)
+        return IntStream.range(0, BIG_SIZE)
                 .mapToObj(i -> {
                     User user = getUser();
                     user.setId(String.valueOf(i));

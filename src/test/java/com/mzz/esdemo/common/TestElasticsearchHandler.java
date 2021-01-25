@@ -9,14 +9,11 @@ import com.mzz.esdemo.model.User;
 import com.mzz.esdemo.service.DocumentService;
 import com.mzz.esdemo.service.IndexService;
 import lombok.Getter;
-import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.client.IndicesClient;
 import org.elasticsearch.client.RestHighLevelClient;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The type Test elasticsearch handler.
@@ -60,12 +57,17 @@ public class TestElasticsearchHandler {
     }
 
     public void upsertDocByBulkForBigData() {
+        clearIndex(EsConstant.BIG_INDEX);
         List<JSONObject> jsons = TestDataUtil.generateBigData();
         documentService.upsertDocByBulk(EsConstant.BIG_INDEX, jsons);
         indexService.refresh(EsConstant.BIG_INDEX);
     }
 
     public void clearIndex() {
+        clearIndex(this.indexName);
+    }
+
+    public void clearIndex(String indexName) {
         if (indexService.exists(indexName)) {
             documentService.clearIndex(indexName);
             refresh();
