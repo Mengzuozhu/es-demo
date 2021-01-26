@@ -24,6 +24,6 @@ public class ElasticsearchConfig {
 
     @Bean
     IndicesClient indicesClient() {
-        return EsClientUtil.createRestHighLevelClient(esUrl).indices();
+        return restHighLevelClient().indices();
     }
 }
