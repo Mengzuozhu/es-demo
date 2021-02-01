@@ -1,8 +1,8 @@
 package com.mzz.esdemo.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzz.esdemo.common.constant.EsConstant;
-import com.mzz.esdemo.common.util.JsonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.elasticsearch.action.DocWriteResponse;
@@ -37,6 +37,16 @@ public class DocumentService {
     private final RestHighLevelClient restHighLevelClient;
 
     /**
+     * To json string.
+     *
+     * @param obj the obj
+     * @return the string
+     */
+    public static String toJsonString(Object obj) {
+        return JSON.toJSONString(obj);
+    }
+
+    /**
      * Create doc.
      *
      * @param index  the index
@@ -48,7 +58,7 @@ public class DocumentService {
     public DocWriteResponse createDoc(String index, String id, Object source) {
         IndexRequest indexRequest = new IndexRequest(index)
                 .id(id)
-                .source(JsonUtil.toJsonString(source), XContentType.JSON);
+                .source(toJsonString(source), XContentType.JSON);
         return restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
     }
 
@@ -62,7 +72,7 @@ public class DocumentService {
      */
     @SneakyThrows
     public DocWriteResponse upsertDoc(String index, String id, Object source) {
-        String jsonString = JsonUtil.toJsonString(source);
+        String jsonString = toJsonString(source);
         UpdateRequest updateRequest = new UpdateRequest(index, id)
                 .doc(jsonString, XContentType.JSON)
                 .upsert(jsonString, XContentType.JSON);
@@ -80,7 +90,7 @@ public class DocumentService {
     public BulkResponse upsertDocByBulk(String index, List<JSONObject> sources) {
         BulkRequest bulkRequest = new BulkRequest(index);
         for (JSONObject source : sources) {
-            String jsonString = JsonUtil.toJsonString(source);
+            String jsonString = toJsonString(source);
             UpdateRequest updateRequest = new UpdateRequest(index, source.getString(EsConstant.ID))
                     .doc(jsonString, XContentType.JSON)
                     .upsert(jsonString, XContentType.JSON);

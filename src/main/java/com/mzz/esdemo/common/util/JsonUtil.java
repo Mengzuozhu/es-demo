@@ -32,13 +32,4 @@ public class JsonUtil {
         return parseObject(obj, JSONObject.class);
     }
 
-    /**
-     * To json string.
-     *
-     * @param obj the obj
-     * @return the string
-     */
-    public static String toJsonString(Object obj) {
-        return JSON.toJSONString(obj);
-    }
 }
