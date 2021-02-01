@@ -2,7 +2,6 @@ package com.mzz.esdemo.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mzz.esdemo.common.constant.EsConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.elasticsearch.action.DocWriteResponse;
@@ -34,6 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DocumentService {
 
+    private static final String ID = "id";
     private final RestHighLevelClient restHighLevelClient;
 
     /**
@@ -81,7 +81,7 @@ public class DocumentService {
         BulkRequest bulkRequest = new BulkRequest(index);
         for (JSONObject source : sources) {
             String jsonString = toJsonString(source);
-            UpdateRequest updateRequest = new UpdateRequest(index, source.getString(EsConstant.ID))
+            UpdateRequest updateRequest = new UpdateRequest(index, source.getString(ID))
                     .doc(jsonString, XContentType.JSON)
                     .upsert(jsonString, XContentType.JSON);
             bulkRequest.add(updateRequest);
