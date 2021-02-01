@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  * The type Document service.
- * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html">
+ * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html">elasticsearch docs
  *
  * @author Zero
  */
