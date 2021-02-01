@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
  * The type Aggregation controller.
  *
  * @author Zero
- * @since 2020 /10/21
  */
 @RestController
 @RequiredArgsConstructor

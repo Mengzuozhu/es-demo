@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
  * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html">elasticsearch indices
  *
  * @author Zero
- * @since 2020 /10/20
  */
 @Service
 @RequiredArgsConstructor

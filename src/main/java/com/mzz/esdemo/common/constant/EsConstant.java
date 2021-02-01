@@ -4,7 +4,6 @@ import org.elasticsearch.client.RequestOptions;
 
 /**
  * @author Zero
- * @since 2020/10/20
  **/
 public class EsConstant {
     public static final RequestOptions REQUEST_DEFAULT = RequestOptions.DEFAULT;

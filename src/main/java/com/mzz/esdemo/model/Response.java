@@ -7,7 +7,6 @@ import lombok.Data;
  *
  * @param <T> the type parameter
  * @author Zero
- * @since 2020 /10/22
  */
 @Data
 public class Response<T> {

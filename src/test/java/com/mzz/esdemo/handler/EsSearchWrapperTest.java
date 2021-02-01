@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Zero
- * @since 2020/10/22
+ *
  **/
 class EsSearchWrapperTest {
     private static final int PAGE_SIZE = 100;

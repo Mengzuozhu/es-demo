@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Zero
- * @since 2020/10/20
+ *
  **/
 public class DocumentServiceTest {
     private static TestElasticsearchHandler elasticsearchHandler = new TestElasticsearchHandler();

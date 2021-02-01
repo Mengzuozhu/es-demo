@@ -29,7 +29,7 @@ import java.util.List;
  * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html">
  *
  * @author Zero
- * @since 2020 /10/20
+ * 2020 /10/20
  */
 @Service
 @RequiredArgsConstructor
