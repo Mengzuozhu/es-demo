@@ -37,16 +37,6 @@ public class DocumentService {
     private final RestHighLevelClient restHighLevelClient;
 
     /**
-     * To json string.
-     *
-     * @param obj the obj
-     * @return the string
-     */
-    public static String toJsonString(Object obj) {
-        return JSON.toJSONString(obj);
-    }
-
-    /**
      * Create doc.
      *
      * @param index  the index
@@ -162,6 +152,16 @@ public class DocumentService {
         return restHighLevelClient.reindex(new ReindexRequest()
                 .setSourceIndices(sourceIndex)
                 .setDestIndex(destIndex), RequestOptions.DEFAULT);
+    }
+
+    /**
+     * To json string.
+     *
+     * @param obj the obj
+     * @return the string
+     */
+    private static String toJsonString(Object obj) {
+        return JSON.toJSONString(obj);
     }
 
 }
