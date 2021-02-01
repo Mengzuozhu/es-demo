@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 /**
  * The type Index service.
- * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html">
+ * See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html">elasticsearch indices
  *
  * @author Zero
  * @since 2020 /10/20
