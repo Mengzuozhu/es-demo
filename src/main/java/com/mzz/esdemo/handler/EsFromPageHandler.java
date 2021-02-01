@@ -14,7 +14,7 @@ import static com.mzz.esdemo.parser.EsResponseParser.forEachHits;
 /**
  * ES from size分页查询
  *
- * @author zuozhu.meng
+ * @author Zero
  **/
 public class EsFromPageHandler {
 

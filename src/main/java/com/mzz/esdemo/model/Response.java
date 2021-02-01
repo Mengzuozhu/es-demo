@@ -6,7 +6,7 @@ import lombok.Data;
  * The type Response.
  *
  * @param <T> the type parameter
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020 /10/22
  */
 @Data

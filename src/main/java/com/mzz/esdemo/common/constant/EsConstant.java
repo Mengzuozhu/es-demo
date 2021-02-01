@@ -3,7 +3,7 @@ package com.mzz.esdemo.common.constant;
 import org.elasticsearch.client.RequestOptions;
 
 /**
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020/10/20
  **/
 public class EsConstant {

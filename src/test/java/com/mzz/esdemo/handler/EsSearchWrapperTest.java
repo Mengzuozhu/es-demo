@@ -19,7 +19,7 @@ import java.util.function.BiConsumer;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020/10/22
  **/
 class EsSearchWrapperTest {

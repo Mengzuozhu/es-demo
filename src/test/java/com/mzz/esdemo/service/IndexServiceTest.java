@@ -14,7 +14,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020/10/20
  **/
 class IndexServiceTest {

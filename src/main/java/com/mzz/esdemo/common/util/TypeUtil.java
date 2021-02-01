@@ -1,7 +1,7 @@
 package com.mzz.esdemo.common.util;
 
 /**
- * @author zuozhu.meng
+ * @author Zero
  **/
 public class TypeUtil {
     /**

@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 /**
  * The type Es search wrapper.
  *
- * @author zuozhu.meng
+ * @author Zero
  */
 @RequiredArgsConstructor
 public class EsSearchWrapper {

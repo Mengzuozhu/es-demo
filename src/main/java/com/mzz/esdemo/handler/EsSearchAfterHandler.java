@@ -16,7 +16,7 @@ import static com.mzz.esdemo.parser.EsResponseParser.forEachHits;
 /**
  * ES Search After查询
  *
- * @author zuozhu.meng
+ * @author Zero
  **/
 public class EsSearchAfterHandler {
     private static final String UID = "_id";

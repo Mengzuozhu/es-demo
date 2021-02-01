@@ -20,7 +20,7 @@ import java.util.Collections;
  * The type Search service.
  * See <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.x/java-rest-high-query-builders.html">
  *
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020 /10/20
  */
 @Service

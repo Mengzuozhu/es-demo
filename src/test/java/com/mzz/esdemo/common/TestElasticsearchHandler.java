@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 /**
  * The type Test elasticsearch handler.
  *
- * @author zuozhu.meng
+ * @author Zero
  */
 public class TestElasticsearchHandler {
     private static final String ES_URL = "http://localhost:9200";

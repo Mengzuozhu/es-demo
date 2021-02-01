@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * The type Exception controller advice.
  *
- * @author zuozhu.meng
+ * @author Zero
  */
 @ControllerAdvice
 public class ExceptionControllerAdvice {

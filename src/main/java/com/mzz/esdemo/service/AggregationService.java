@@ -24,7 +24,7 @@ import static org.elasticsearch.search.aggregations.metrics.NumericMetricsAggreg
  * See
  * <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.x/java-rest-high-aggregation-builders.html">
  *
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020 /10/21
  */
 @Service

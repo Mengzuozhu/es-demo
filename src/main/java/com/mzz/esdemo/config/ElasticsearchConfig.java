@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * The type Elasticsearch config.
  *
- * @author zuozhu.meng
+ * @author Zero
  */
 @Configuration
 public class ElasticsearchConfig {

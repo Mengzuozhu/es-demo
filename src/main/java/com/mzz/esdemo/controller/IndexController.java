@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * The type Index controller.
  *
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020 /10/22
  */
 @RestController

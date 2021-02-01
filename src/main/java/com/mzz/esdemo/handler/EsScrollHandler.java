@@ -16,7 +16,7 @@ import static com.mzz.esdemo.parser.EsResponseParser.forEachHits;
 /**
  * ES Scroll查询
  *
- * @author zuozhu.meng
+ * @author Zero
  **/
 public class EsScrollHandler {
     private static final int DEFAULT_KEEP_ALIVE_MILLIS = 60000;

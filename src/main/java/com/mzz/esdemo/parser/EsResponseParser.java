@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 /**
  * The type Es response parser.
  *
- * @author zuozhu.meng
+ * @author Zero
  */
 public class EsResponseParser {
 

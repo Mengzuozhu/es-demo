@@ -5,7 +5,7 @@ import org.elasticsearch.common.settings.Settings;
 /**
  * The type Setting manager.
  *
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020 /10/21
  */
 public class SettingManager {

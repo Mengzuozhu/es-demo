@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * The type Log aspect.
  *
- * @author zuozhu.meng
+ * @author Zero
  */
 @Component
 @Aspect

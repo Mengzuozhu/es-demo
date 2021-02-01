@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author zuozhu.meng
+ * @author Zero
  * @since 2020/10/21
  **/
 class AggregationServiceTest {
