@@ -34,14 +34,14 @@ public class DocumentController {
     }
 
     /**
-     * Upsert.
+     * Multi upsert.
      *
      * @param index   the index
      * @param sources the sources
      * @return the response
      */
     @PostMapping("/{index}/multiUpsert")
-    public Response<?> upsert(@PathVariable String index, @RequestBody List<JSONObject> sources) {
+    public Response<?> multiUpsert(@PathVariable String index, @RequestBody List<JSONObject> sources) {
         return Response.of(documentService.upsertDocByBulk(index, sources));
     }
 
@@ -70,14 +70,14 @@ public class DocumentController {
     }
 
     /**
-     * Delete.
+     * Delete by query.
      *
      * @param index  the index
      * @param source the source
      * @return the response
      */
     @PostMapping("/{index}/deleteByQuery")
-    public Response<?> delete(@PathVariable String index, @RequestBody JSONObject source) {
+    public Response<?> deleteByQuery(@PathVariable String index, @RequestBody JSONObject source) {
         return Response.of(documentService.deleteByQuery(index, source.toJSONString()));
     }
 

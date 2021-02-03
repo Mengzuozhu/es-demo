@@ -45,7 +45,7 @@ public class SearchController {
     }
 
     /**
-     * Terms query.
+     * Range query.
      *
      * @param index the index
      * @param field the field
