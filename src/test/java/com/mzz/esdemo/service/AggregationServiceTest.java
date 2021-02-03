@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Zero
- *
  **/
 class AggregationServiceTest {
     private static TestElasticsearchHandler elasticsearchHandler = new TestElasticsearchHandler();
@@ -35,34 +34,35 @@ class AggregationServiceTest {
 
     @Test
     void distinctCount() {
-        long distinctCount = aggregationService.distinctCount(EsConstant.INDEX_NAME, "degree.keyword");
+        long distinctCount = aggregationService.distinctCount(EsConstant.INDEX_NAME, User.Fields.degree + ".keyword");
         assertEquals(getDegreeCount(), distinctCount);
     }
 
     @Test
     void minAgg() {
-        double minAgg = aggregationService.minAgg(EsConstant.INDEX_NAME, "height");
+        double minAgg = aggregationService.minAgg(EsConstant.INDEX_NAME, User.Fields.height);
         Optional<Integer> optional = getHeightStream().min(Comparator.naturalOrder());
         optional.ifPresent(val -> assertEquals(val, (int) minAgg));
     }
 
     @Test
     void maxAgg() {
-        double maxAgg = aggregationService.maxAgg(EsConstant.INDEX_NAME, "height");
+        double maxAgg = aggregationService.maxAgg(EsConstant.INDEX_NAME, User.Fields.height);
         Optional<Integer> optional = getHeightStream().max(Comparator.naturalOrder());
         optional.ifPresent(val -> assertEquals(val, (int) maxAgg));
     }
 
     @Test
     void avgAgg() {
-        double avgAgg = aggregationService.avgAgg(EsConstant.INDEX_NAME, "height");
+        double avgAgg = aggregationService.avgAgg(EsConstant.INDEX_NAME, User.Fields.height);
         System.out.println(avgAgg);
         assertTrue(avgAgg > 0);
     }
 
     @Test
     void termsAgg() {
-        Map<Object, Long> termsAgg = aggregationService.termsCountAgg(EsConstant.INDEX_NAME, "degree.keyword");
+        Map<Object, Long> termsAgg = aggregationService.termsCountAgg(EsConstant.INDEX_NAME,
+                User.Fields.degree + ".keyword");
         assertEquals(getDegreeCount(), termsAgg.size());
     }
 

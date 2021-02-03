@@ -83,7 +83,7 @@ public class DocumentServiceTest {
 
     @Test
     void deleteByQuery() {
-        TermsQueryBuilder query = QueryBuilders.termsQuery("id", TestDataUtil.getUser().getId());
+        TermsQueryBuilder query = QueryBuilders.termsQuery(User.Fields.id, TestDataUtil.getUser().getId());
         BulkByScrollResponse response = documentService.deleteByQuery(EsConstant.INDEX_NAME,
                 query.toString());
         assertEquals(0, response.getBulkFailures().size());

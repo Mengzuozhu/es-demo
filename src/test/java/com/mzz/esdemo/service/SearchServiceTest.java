@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Zero
- *
  **/
 class SearchServiceTest {
     private static SearchService searchService;
@@ -58,8 +57,8 @@ class SearchServiceTest {
     @Test
     void rangeQuery() {
         String field = User.Fields.height;
-        int value = 170;
-        SearchResponse response = searchService.rangeQuery(EsConstant.INDEX_NAME, field, value, 180);
+        int value = TestDataUtil.getUser().getHeight();
+        SearchResponse response = searchService.rangeQuery(EsConstant.INDEX_NAME, field, value, value + 10);
         assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
