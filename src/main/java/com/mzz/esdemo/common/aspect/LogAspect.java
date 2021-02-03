@@ -10,7 +10,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * The type Log aspect.
@@ -50,24 +52,18 @@ public class LogAspect {
         return result;
     }
 
+    private static String substring(Object obj) {
+        String str = String.valueOf(obj);
+        return str.length() > MAX_LENGTH ? StringUtils.substring(str, 0, MAX_LENGTH) : str;
+    }
+
     private String joinArgs(Object[] args) {
         if (args == null) {
             return "";
         }
-        StringBuilder argBuilder = new StringBuilder("(");
-        for (int i = 0; i < args.length; i++) {
-            if (i > 0) {
-                argBuilder.append(", ");
-            }
-            argBuilder.append(substring(args[i]));
-        }
-        argBuilder.append(")");
-        return argBuilder.toString();
-    }
-
-    private String substring(Object obj) {
-        String str = String.valueOf(obj);
-        return str.length() > MAX_LENGTH ? StringUtils.substring(str, 0, MAX_LENGTH) : str;
+        return Arrays.stream(args)
+                .map(LogAspect::substring)
+                .collect(Collectors.joining(", ", "(", ")"));
     }
 
 }
