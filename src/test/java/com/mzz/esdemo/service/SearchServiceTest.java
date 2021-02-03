@@ -1,7 +1,9 @@
 package com.mzz.esdemo.service;
 
+import com.mzz.esdemo.common.TestDataUtil;
 import com.mzz.esdemo.common.TestElasticsearchHandler;
 import com.mzz.esdemo.common.constant.EsConstant;
+import com.mzz.esdemo.model.User;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.util.set.Sets;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -39,16 +41,23 @@ class SearchServiceTest {
 
     @Test
     void termsQuery() {
-        String field = "name";
-        String value = "张三";
+        String field = User.Fields.name;
+        String value = TestDataUtil.getUser().getName();
         SearchResponse response = searchService.termsQuery(EsConstant.INDEX_NAME, field + ".keyword",
                 Sets.newHashSet(value));
         assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
+    void idsQuery() {
+        String id = TestDataUtil.getUser().getId();
+        SearchResponse response = searchService.idsQuery(EsConstant.INDEX_NAME, id);
+        assertEquals(id, response.getHits().getHits()[0].getId());
+    }
+
+    @Test
     void rangeQuery() {
-        String field = "height";
+        String field = User.Fields.height;
         int value = 170;
         SearchResponse response = searchService.rangeQuery(EsConstant.INDEX_NAME, field, value, 180);
         assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
@@ -56,23 +65,23 @@ class SearchServiceTest {
 
     @Test
     void matchQuery() {
-        String field = "name";
-        String value = "张三";
+        String field = User.Fields.name;
+        String value = TestDataUtil.getUser().getName();
         SearchResponse response = searchService.matchQuery(EsConstant.INDEX_NAME, field, value);
         assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
     void matchPhraseQuery() {
-        String field = "message";
-        String value = "Elasticsearch demo";
+        String field = User.Fields.message;
+        String value = TestDataUtil.getUser().getMessage();
         SearchResponse response = searchService.matchPhraseQuery(EsConstant.INDEX_NAME, field, value);
         assertEquals(value, response.getHits().getHits()[0].getSourceAsMap().get(field));
     }
 
     @Test
     void queryStringQuery() {
-        String field = "message";
+        String field = User.Fields.message;
         String value = "demo";
         SearchResponse response = searchService.queryStringQuery(EsConstant.INDEX_NAME, value);
         assertTrue(response.getHits().getHits()[0].getSourceAsMap().get(field).toString().contains(value));
@@ -80,8 +89,8 @@ class SearchServiceTest {
 
     @Test
     void queryByJson() {
-        String field = "name";
-        String value = "张三";
+        String field = User.Fields.name;
+        String value = TestDataUtil.getUser().getName();
         String json = new SearchSourceBuilder()
                 .query(QueryBuilders.matchQuery(field, value))
                 .toString();
