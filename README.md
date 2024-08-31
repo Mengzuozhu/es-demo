@@ -9,8 +9,8 @@ Spring boot2.3.4 + Elasticsearch7.x Java demo：
 - [AggregationService](https://github.com/Mengzuozhu/es-demo/blob/master/src/main/java/com/mzz/esdemo/service/AggregationService.java) 聚合常用功能示例：最值、平均值、唯一值数目等
 - [EsSearchWrapper](https://github.com/Mengzuozhu/es-demo/blob/master/src/main/java/com/mzz/esdemo/handler/EsSearchWrapper.java) 封装：分页（from size）、游标（Scroll）、Search After查询
 
-[相关博客地址](https://blog.csdn.net/m0_37862405/article/details/113529247)
-
+[CSDN博客地址](https://blog.csdn.net/m0_37862405/article/details/113529247)    
+[掘金博客地址](https://juejin.cn/post/6924989644153683981)
 
 
 **参考文档：**
